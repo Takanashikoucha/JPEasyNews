@@ -2,6 +2,7 @@
 # @LastAuthor: TakanashiKoucha
 # @Date: 2019-12-12 18:48:22
 import os
+import re
 import time
 
 import fire
@@ -28,6 +29,13 @@ driver = webdriver.Chrome(chrome_options=chrome_options)
 # 设定大小为1280*2048
 driver.set_window_size(1280, 2048)
 
+# 使用提示
+print('''
+    加载网页需要时间，默认预留时间为2s，可按需修改。
+    请勿用于违反NHK著作许可的用途！
+                    ----Takanashi・Koucha
+    ''')
+
 # 更改工作目录
 try:
     os.chdir(os.getcwd() + "\\download\\")
@@ -41,12 +49,6 @@ else:
 
 
 def download(id=""):
-    # 使用提示
-    print('''
-        加载网页需要时间，默认预留时间为2s，可按需修改。
-        请勿用于违反NHK著作许可的用途！
-                        ----Takanashi・Koucha
-        ''')
     # 获取网页并等待2s
     driver.get("https://www3.nhk.or.jp/news/easy/" + id + "/" + id + ".html")
     time.sleep(2)
@@ -86,7 +88,33 @@ def download(id=""):
     print("请检查m3u8文件")
 
 
+def dfl(file):
+    i = 0
+    with open(file, "r") as file:
+        for line in file.readlines():
+            i = i + 1
+            try:
+                download(line)
+                print("下载成功，当前  " + str(i))
+            except:
+                print("下载失败，当前  " + str(i))
+
+
+def genlist():
+    driver.get("https://www3.nhk.or.jp/news/easy/")
+    time.sleep(2)
+    page = driver.page_source
+    pattern = re.compile('''k[0-9]{2,}''')
+    id_lists = pattern.findall(page)
+    id_list = list(set(id_lists))
+    print(id_list)
+    with open("list.txt","w+") as file:
+        for id in id_list:
+            file.write(id+"\n")
+
+
+
 if __name__ == '__main__':
-    fire.Fire(download)
+    fire.Fire()
     #退出浏览器
     driver.quit()
