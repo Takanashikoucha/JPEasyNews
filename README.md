@@ -15,7 +15,7 @@ Generate various language learning materials from HNK Easy News
 ------
 ## 功能：
 
-```python
+```bash
 # 下载id为xxxxxxxxxxxx的新闻文件到工作目录下的download文件夹下
 python ./JPEasyNews.py download --id=xxxxxxxxxxxx
 # 从工作目录下的某个文件中按行读取id并下载
