@@ -19,7 +19,7 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("log-level=3")
 prefs = {
     'profile.default_content_settings.popups': 0,
-    'download.default_directory': os.getcwd() + "\\download\\"
+    'download.default_directory': os.getcwd() + "\\downloads\\"
 }
 chrome_options.add_experimental_option('prefs', prefs)
 
@@ -38,12 +38,12 @@ print('''
 
 # 更改工作目录
 try:
-    os.chdir(os.getcwd() + "\\download\\")
+    os.chdir(os.getcwd() + "\\downloads\\")
 except Exception as e:
     print(e)
-    os.mkdir(os.getcwd() + "\\download\\")
+    os.mkdir(os.getcwd() + "\\downloads\\")
     print("新创建下载目录")
-    os.chdir(os.getcwd() + "\\download\\")
+    os.chdir(os.getcwd() + "\\downloads\\")
 else:
     print("已存在下载目录")
 

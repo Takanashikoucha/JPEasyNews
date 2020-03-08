@@ -16,10 +16,15 @@ Generate various language learning materials from HNK Easy News
 ## 功能：
 
 ```bash
-# 下载id为xxxxxxxxxxxx的新闻文件到工作目录下的download文件夹下
+# 下载id为xxxxxxxxxxxx的新闻文件到工作目录下的downloads文件夹下
 python ./JPEasyNews.py download --id=xxxxxxxxxxxx
 # 从工作目录下的某个文件中按行读取id并下载
 python ./JpEasyNews.py dfl filename.txt
-# 生成一个首页上所有id的list文件到工作目录下的download文件夹中
+# 生成一个首页上所有id的list文件到工作目录下的downloads文件夹中
 python ./JPEasyNews.py genlist
 ```
+
+------
+Todo:
+- 整合词典/解析工具
+- 生成更容易利用的纯文本
