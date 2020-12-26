@@ -40,10 +40,13 @@ print('''
 
 # 更改工作目录
 try:
-    os.chdir(os.getcwd() + "\\downloads\\")
+    os.chdir(os.getcwd() + "\\downloads\\img")
+    os.chdir("..")
+    print("工作目录为：  "+os.getcwd())
 except Exception as e:
     print(e)
     os.mkdir(os.getcwd() + "\\downloads\\")
+    os.mkdir(os.getcwd() + "\\downloads\\img")
     print("新创建下载目录")
     os.chdir(os.getcwd() + "\\downloads\\")
 else:
@@ -65,6 +68,7 @@ def download(id=""):
     # 找到不带注音正文
     content_without_hiragana = driver.find_element_by_xpath(
         '''//*[@id="easy-wrapper"]/div[2]/main/article''')
+    os.chdir(os.getcwd() + "\\img")
     content_without_hiragana.screenshot(title + ".png")
     # 添加注音并找到带注音正文
     driver.find_element_by_xpath(
@@ -74,6 +78,7 @@ def download(id=""):
         '''//*[@id="easy-wrapper"]/div[2]/main/article''')
     content_without_hiragana.screenshot("（読み方付き）" + title + ".png")
     print("内容已保存为图片")
+    os.chdir("..")
     # 获取m3u8文件
     m3u8_url = "https://nhks-vh.akamaihd.net/i/news/easy/" + id + ".mp4/master.m3u8"
     driver.get(m3u8_url)
@@ -100,6 +105,8 @@ def dfl(file):
                 print("下载成功，当前  " + str(i))
             except:
                 print("下载失败，当前  " + str(i))
+    # 退出浏览器
+    driver.quit()
 
 
 def genlist():
@@ -112,10 +119,10 @@ def genlist():
     print(id_list)
     with open("list.txt", "w+") as file:
         for id in id_list:
-            file.write(id+"\n")
+            file.write(id + "\n")
+    # 退出浏览器
+    driver.quit()
 
 
 if __name__ == '__main__':
     fire.Fire()
-    # 退出浏览器
-    driver.quit()
