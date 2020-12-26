@@ -1,6 +1,6 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf8 -*-
 # @LastAuthor: TakanashiKoucha
-# @Date: 2019-12-12 18:48:22
+# @Date: 2020-12-26 20:27:28
 import os
 import re
 import time
@@ -17,6 +17,8 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("log-level=3")
+chrome_options.add_experimental_option(
+    'excludeSwitches', ['enable-logging'])
 prefs = {
     'profile.default_content_settings.popups': 0,
     'download.default_directory': os.getcwd() + "\\downloads\\"
@@ -108,13 +110,12 @@ def genlist():
     id_lists = pattern.findall(page)
     id_list = list(set(id_lists))
     print(id_list)
-    with open("list.txt","w+") as file:
+    with open("list.txt", "w+") as file:
         for id in id_list:
             file.write(id+"\n")
 
 
-
 if __name__ == '__main__':
     fire.Fire()
-    #退出浏览器
+    # 退出浏览器
     driver.quit()
