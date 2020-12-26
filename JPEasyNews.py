@@ -44,10 +44,13 @@ try:
     os.chdir("..")
     print("工作目录为：  "+os.getcwd())
 except Exception as e:
-    print(e)
-    os.mkdir(os.getcwd() + "\\downloads\\")
+    print("未发现下载目录，开始创建")
+    try:
+        os.mkdir(os.getcwd() + "\\downloads\\")
+    except:
+        pass
     os.mkdir(os.getcwd() + "\\downloads\\img")
-    print("新创建下载目录")
+    print("新创建下载目录结束")
     os.chdir(os.getcwd() + "\\downloads\\")
 else:
     print("已存在下载目录")
