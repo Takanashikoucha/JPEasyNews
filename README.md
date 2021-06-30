@@ -1,6 +1,6 @@
 # JPEasyNews
 
-【现已支持macOS+Safari组合】
+【现已支持macOS+Safari组合,请检查对应分支】
 
 从HNK简易新闻生成各种语言学习用材料
 
@@ -13,6 +13,8 @@ Generate various language learning materials from HNK Easy News
 [google-fire](https://github.com/google/python-fire)
 [selenium](https://selenium.dev/)
 [chromedriver](https://chromedriver.chromium.org/)
+
+macOS下依赖对应的Safari driver驱动
 
 ------
 ## 功能：
